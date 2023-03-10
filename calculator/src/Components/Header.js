@@ -1,27 +1,38 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import './Header.css'
 
-function Header() {
+function Header(props) {
+  const resultRef = useRef();
+  const expressionsref = useRef();
+
+  useEffect(()=>{
+    // eslint-disable-next-line no-unused-expressions
+    resultRef.current.scrollIntoView();
+  }, [props.history]);
+
+  useEffect(()=>{
+      expressionsref.current.scrollLeft = expressionsref.current.scrollWidth;
+  }, [props.expressions]);
+
+
   return (
     <div className='header custom-scroll'>
         <div className='header_history'>
-          <p>10+2</p>
-          <p>125-878*4</p>
-          <p>10+5</p>
-          <p>10+2</p>
-          <p>125-878*4</p>
-          <p>10+5</p>
-          <p>10+2</p>
-          <p>125-878*4</p>
-          <p>10+5</p>
+          {
+            props.history &&
+            props.history?.map((item)=> 
+            ( <p key={item+" "+ Math.random() * 44}></p>))
+          }
         </div>
 <br />
-        <div className="header_expression custom-scroll">
-          <p>10+50+89
+        <div ref={expressionsref} className="header_expressions custom-scroll">
+          <p>{props.expressions}
           </p>
           <div>
-            <p className="header_result">149</p>
+            <p ref={resultRef} className="header_result">
+              {props.result}
+            </p>
           </div>
         </div>
     </div>
