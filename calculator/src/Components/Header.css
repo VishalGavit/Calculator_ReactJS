@@ -16,6 +16,7 @@
 .header_exprssion{
     overflow-x: scroll;
     width: 100%;
+    min-height: 30px;
 }
 
 .header_exprssion p{
@@ -28,4 +29,5 @@ font-weight: bold;
 .header_result{
     font-weight: bolder;
     font-size: 1.3rem !important;
+    min-height: 30px;
 }
